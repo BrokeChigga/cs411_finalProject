@@ -1,0 +1,95 @@
+<html>
+<head>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'advSearch.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'menustyle.css' %}" >
+
+<title>smart movie</title>
+<h1><center><font color= #9E0F15>Smart Movie</font></center></h1><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+
+
+
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+
+
+<head>
+<style>
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="{% url 'movie:index'%}">Home</a></li>
+  <li><a href="{% url 'movie:review'%}">review movies</a></li>
+  <li><a href="{% url 'movie:advsearch'%}">advanced search</a></li>
+  <li><a href="{% url 'movie:like'%}">movies you may like</a></li>
+  <li><a href="{% url 'movie:loginpage'%}">log in</a></li>
+</ul>
+
+{% if all_movies %}
+    <h2><font color = "white">Here are all my movies</font></h2>
+    <h3><font color = "white">click to see details</font></h3>
+        {% for movie in all_movies %}
+        <a href="{% url 'movie:detail' movie.id %}"><font color="white">{{ movie.name }}</font></a><br>
+        {% endfor %}
+{% else %}
+    <h3>There is no movie</h3>
+{% endif %}
+
+
+
+
+
+</body>
+</html>
+
+

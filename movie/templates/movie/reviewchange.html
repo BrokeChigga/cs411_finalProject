@@ -1,0 +1,137 @@
+
+<html>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'advSearch.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'menustyle.css' %}" >
+<head>
+<title>smart movie</title>
+<h1><center><font color= #9E0F15>Smart Movie</font></center></h1><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+
+
+
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+
+
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+
+
+
+
+<ul>
+  <li><a href="{% url 'movie:index'%}">Home</a></li>
+  <li><a href="{% url 'movie:review'%}">review movies</a></li>
+  <li><a href="{% url 'movie:advsearch'%}">advanced search</a></li>
+  <li><a href="{% url 'movie:like'%}">movies you may like</a></li>
+  <li><a href="{% url 'movie:loginpage'%}">log in</a></li>
+</ul>
+
+
+
+
+<div class="detailBox">
+    <div class="titleBox">
+      <label>Review Box</label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="commentBox">
+
+<p><font color=" white">email: {{ review.email }}</font></p>
+<p><font color=" white">content: {{ review.content }}</font></p>
+
+    </div>
+    <div class="actionBox">
+        <ul class="commentList"></ul>
+
+
+
+        <form action="{% url 'movie:reviewAdd' %}" method = "post" class="form-inline" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="text" name = "content" placeholder="review" /></div><br>
+            <div class="form-group">
+                <input class="form-control" type="text" name = "email" placeholder="email" /></div><br>
+            <div class="form-group"><input type="submit" value="Add"></div>
+        </form>
+
+
+
+        <form action="{% url 'movie:reviewDelete' review.id %}" method = "post" class="form-inline" role="form">
+            {% csrf_token %}
+            <div class="form-group"><input type="submit" value="Delete"></div>
+        </form>
+
+
+        <form action="{% url 'movie:reviewUpdate' review.id %}" method = "post" class="form-inline" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="text" name = "content" placeholder="review" /></div><br>
+            <div class="form-group">
+                <input class="form-control" type="text" name = "email" placeholder="email" /></div><br>
+            <div class="form-group"><input type="submit" value="Update"></div>
+        </form>
+
+
+
+
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'loginstyle.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" >
+  <meta charset="UTF-8">
+  <title>log in</title>
+
+
+  
+</head>
+
+<body>
+<div class="login-page">
+  <div class="form">
+    <form class="register-form" action="demo_sign_in.php" method="post" target="_blank">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="{% url 'movie:create_user'%}">Create an account</a></p>
+    </form>
+  </div>
+</div>
+
+
+    <script src="js/login.js"></script>
+
+
+
+
+</body>
+</html>

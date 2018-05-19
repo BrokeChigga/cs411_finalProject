@@ -1,0 +1,119 @@
+<html>
+<title>smart movie</title>
+<head>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'advSearch.css' %}" >
+<h1><center><font color= #9E0F15>Smart Movie</font></center></h1><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+
+
+
+
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+
+
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+
+
+
+
+<ul>
+  <li><a href="{% url 'movie:index'%}">Home</a></li>
+  <li><a href="{% url 'movie:review'%}">review movies</a></li>
+  <li><a href="{% url 'movie:advsearch'%}">advanced search</a></li>
+  <li><a href="{% url 'movie:like'%}">movies you may like</a></li>
+  <li><a href="{% url 'movie:loginpage'%}">log in</a></li>
+</ul>
+
+
+		<div class="search-background">
+        </div>
+            <div class="well-searchbox">
+                <form action="{% url 'movie:actorSearch' %}" method = "post" class="form-horizontal" role="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Input an actor</label>
+                        <div class="col-md-8"><input type="text" name="actor_name" class="form-control" placeholder="Keyword"></div></div>
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success">Search</button></div>
+                <font color="white">The average rating of movies acted by him is {{ actor_avg_rating }}</font>
+                </form>
+                <br>
+
+
+                <form action="{% url 'movie:directorSearch' %}" method = "post" class="form-horizontal" role="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Input an director</label>
+                        <div class="col-md-8"><input type="text" name="director_name" class="form-control" placeholder="Keyword"></div></div>
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success">Search</button></div>
+                <font color="white">The movie of highest rating directed by him is {{ directorsMovie }}</font>
+                </form>
+                <br>
+
+
+                <form action="{% url 'movie:load_data' %}" method = "post" class="form-horizontal" role="form">
+                    {% csrf_token %}
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success">load data</button>
+                    </div>
+                <font color="white">success or not: {{ success }}</font>
+                </form>
+
+            </div>
+
+
+
+
+</body>
+</html>
+
